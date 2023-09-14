@@ -3,6 +3,7 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const mongodbStore = require('connect-mongodb-session');
+const csrf = require('csrf');
 
 const db = require('./data/database');
 const demoRoutes = require('./routes/demo');
@@ -29,8 +30,7 @@ app.use(session({
   saveUninitialized: false,
   store: sessionStore,
   cookie: {
-    maxAge: 2 * 24 * 60 * 60 * 1000,
-    sameSite: 'lax'
+    maxAge: 2 * 24 * 60 * 60 * 1000
   }
 }));
 
