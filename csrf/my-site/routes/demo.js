@@ -1,6 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 
+
 const db = require('../data/database');
 
 const router = express.Router();
@@ -150,11 +151,12 @@ router.post('/login', async function (req, res) {
 });
 
 
-router.get('/transaction', function (req, res) {
+router.get("/transaction", function (req, res) {
   if (!res.locals.isAuth) {
-    return res.status(401).render('401');
+    return res.status(401).render("401");
   }
-  res.render('transaction');
+  const csrfToken = req.csrfToken();
+  res.render("transaction", { csrfToken: csrfToken });
 });
 
 router.post('/transaction', async function(req, res) {
