@@ -9,6 +9,7 @@ async function connectToDatabase() {
   database = client.db('security');
 }
 
+
 function getDb() {
   if (!database) {
     throw { message: 'You must connect first!' };
